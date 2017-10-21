@@ -1535,8 +1535,8 @@ static void set_seccomp_filter(const struct minijail *j)
 			 * If logging seccomp filter failures,
 			 * install the SIGSYS handler first.
 			 */
-			if (install_sigsys_handler())
-				pdie("failed to install SIGSYS handler");
+			//if (install_sigsys_handler())
+			//	pdie("failed to install SIGSYS handler");
 			warn("logging seccomp filter failures");
 		} else if (j->flags.seccomp_filter_tsync) {
 			/*
@@ -1600,6 +1600,7 @@ static void config_net_loopback(void)
 
 void API minijail_enter(const struct minijail *j)
 {
+#if 0
 	/*
 	 * If we're dropping caps, get the last valid cap from /proc now,
 	 * since /proc can be unmounted before drop_caps() is called.
@@ -1754,6 +1755,7 @@ void API minijail_enter(const struct minijail *j)
 		}
 		pdie("prctl(PR_SET_SECCOMP) failed");
 	}
+#endif
 }
 
 /* TODO(wad): will visibility affect this variable? */
